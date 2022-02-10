@@ -5,14 +5,15 @@ function Navigation(props){
     return (
         
         <nav className="navigation">
-            <h1>H|App|Y!</h1>
+            <Link to='/'>
+                <h1>NXT</h1>
+            </Link>
             <div className="navigation__links-wrapper">
-                <Link to='/holidays'>
-                    <p>All Holidays</p>
-                </Link>
-                <Link to='/holidays/new'>
-                <p>Create Holiday</p>
-                </Link>
+                
+                <p>Nav Bar Icon</p>
+                
+                <p>Edit</p>
+                
             </div>
         </nav>
 
