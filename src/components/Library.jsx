@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import staticData from '../data'
+import {Link} from 'react-router-dom'
 
 function Library(){
 
@@ -14,9 +15,9 @@ function Library(){
         console.log(query)
         console.log(key)
         const options = {
-        headers: {
-            'Accept': "application/json"
-        }
+            headers: {
+                'Accept': "application/json"
+            }
         }
 
     fetch(URL, options)
@@ -95,6 +96,15 @@ function Library(){
                     </div>
                 ))
             }
+
+            <Link to='/desk/bookshelf'>
+                <h2>Book Shelf</h2>
+            </Link>
+
+            <Link to='/desk/library'>
+                <h2>Library</h2>
+            </Link>
+
 
 
         </div>
