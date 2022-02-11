@@ -13,11 +13,12 @@ function App() {
 
   return (
     <div className="App">
-      
+
       <Navigation/>
 
       <Routes>
-        {/* <Route path='/' element={} /> */}
+        {/* Home Page */}
+        <Route path='/' element={<HomePage/>} />
 
         {/* {Library} */}
         <Route path='/desk/library' element={<Library /> } />
