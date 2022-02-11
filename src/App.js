@@ -13,9 +13,11 @@ function App() {
 
   return (
     <div className="App">
+      
+      <Navigation/>
 
       <Routes>
-        <Route path='/' element={<Navigation/>} />
+        {/* <Route path='/' element={} /> */}
 
         {/* {Library} */}
         <Route path='/desk/library' element={<Library /> } />
