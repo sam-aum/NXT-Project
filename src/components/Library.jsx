@@ -13,57 +13,64 @@ function Library(){
 
         console.log(query)
         console.log(key)
-    // const options = {
-    //   headers: {
-    //     'Accept': "application/json"
-    //   }
-    // }
+        const options = {
+        headers: {
+            'Accept': "application/json"
+        }
+        }
 
-    fetch(URL) //fetch(URL, options)
+    fetch(URL, options)
         .then(resp=>{        
             return resp.json()
         })
         .then(data=>{
             console.log(data.items)
+
             setBooks(data.items)       
         })
     }
 
+    // handleChange //
+    const handleChange = (e) =>{
+        setSearchInput(e.target.value)
+    }
+
+    // handleSubmit
+    const handleSubmit= (e) => {
+        e.preventDefault()
+        handleFetch(searchInput)    
+    }
+
     // useEffect //
     useEffect(()=>{
-        handleFetch('children of time')
+        handleFetch(searchInput)
     }, [])
-
-    // // handleChange //
-    // const handleChange = (e) =>{
-    //     setSearchInput(e.target.value)
-    // }
-
-    // // handleSubmit
-    // const handleSubmit= (e) => {
-    //     e.preventDefault()
-    //     handleFetch(searchInput)    
-    // }
 
     console.log(books)
     
     return (
         
         <div>
-            {/* {The Heading} */}
-            <h1>The Library</h1>
+        
+           
+            <header className='header'>
+                
+                 {/* {The Heading} */}
+                <h1 className="header__title">The Library</h1>
 
-            {/* The Search Bar */}
-            {/* <form onSubmit={handleSubmit}> 
-                <input 
-                type="text" 
-                name="query"
-                placeholder="search for books" 
-                onChange={handleChange}
-                value={searchInput}/>
-                <input type ='submit' value='Search'/>
-            </form> */}
-
+                {/* The Search Bar */}
+                <form className="header__form" onSubmit={handleSubmit}> 
+                    <input 
+                    className="form__input-text"
+                    type="text" 
+                    name="query"
+                    placeholder="search for books" 
+                    onChange={handleChange}
+                    value={searchInput}
+                    />                    
+                    <button type='submit'>Search</button>
+                </form>
+            </header>
 
             {books &&
                 books.map((book, index) => (
@@ -77,13 +84,19 @@ function Library(){
                                 src={book.volumeInfo.imageLinks.thumbnail} 
                                 alt={book.volumeInfo.title}
                                 />
+
+                                <h4>{book.searchInfo.textSnippet}</h4>
+
+                                <h4>{book.volumeInfo.description}</h4>
                             </div>
-                        : 
-                        <p>{'its not working'}</p>
+                            : 
+                            <p>{'its not working'}</p>
                         }
                     </div>
+                ))
+            }
 
-            ))}
+
         </div>
 
     )
