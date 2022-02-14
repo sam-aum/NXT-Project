@@ -10,9 +10,10 @@ function Navigation(props){
             </Link>
             <div className="navigation__links-wrapper">
                 
+                <p>Edit</p>
+                
                 <p>Nav Bar Icon</p>
                 
-                <p>Edit</p>
                 
             </div>
         </nav>

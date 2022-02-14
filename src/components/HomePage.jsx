@@ -4,8 +4,9 @@ function HomePage(props){
     return (
         
         <div>
-            <h1>Home Page</h1>
-
+            <header className='header'>
+                <h1 className="header__title">Home Page</h1>
+            </header>
             <Link to='/desk'>
                 <h2>Books</h2>
             </Link>

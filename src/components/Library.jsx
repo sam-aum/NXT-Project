@@ -1,11 +1,14 @@
 import {useEffect, useState} from 'react'
 import staticData from '../data'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 function Library(){
 
     const [books, setBooks] = useState([...staticData] || [])
     const [searchInput, setSearchInput] = useState("")
+
+    let navigate = useNavigate()
+   
 
     // Fetch //
     const handleFetch = async (query) => {  
@@ -20,15 +23,40 @@ function Library(){
             }
         }
 
-    fetch(URL, options)
-        .then(resp=>{        
-            return resp.json()
-        })
-        .then(data=>{
-            console.log(data.items)
+        fetch(URL, options)
+            .then(resp=>{        
+                return resp.json()
+            })
+            .then(data=>{
+                console.log(data.items)
 
-            setBooks(data.items)       
-        })
+                setBooks(data.items)       
+            })
+    }
+
+    //Post fetch to Backend //
+    const addBook = async (data) =>{
+        const URL = "http://localhost:8000/bookshelf"
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+              "Content-Type": "application/json"
+            }
+        }
+        try {
+            console.log('data inside addBook', data)
+            const addedBook = await fetch(URL,options)
+            // console.log(addedBook)
+            const parsedBooks = await addedBook.json()
+            console.log(parsedBooks)
+            setBooks([...books, parsedBooks])
+            navigate('/desk/bookshelf')
+            
+  
+        }catch(err){
+            console.log(err)
+        }
     }
 
     // handleChange //
@@ -46,6 +74,13 @@ function Library(){
     useEffect(()=>{
         handleFetch(searchInput)
     }, [])
+
+
+
+    // handleClick //
+    const handleClick = ({title, authors, description, imageLinks})=>{
+        addBook({title, authors: authors[0], description, imageLinks: imageLinks.thumbnail})
+    }
 
     console.log(books)
     
@@ -73,22 +108,34 @@ function Library(){
                 </form>
             </header>
 
+            {/* Searched books display */}
             {books &&
                 books.map((book, index) => (
-                    <div key={book.id}>
+                    <div className='bookResult' key={book.id}>
                         {book.volumeInfo ? 
                             <div>
-                                <h3>{book.volumeInfo.title}</h3>
-                                <h3>{book.volumeInfo.authors[0]}</h3>
+                                <button onClick={() => handleClick(book.volumeInfo)}>
+                                    Add to Book Shelf
+                                </button>
+
+                                
+                                <h2>
+                                    {index+1}. {' '}
+                                    {book?.['volumeInfo']?.title}
+                                </h2>
+                                <h3>
+                                    {'By: '}
+                                    {book?.volumeInfo?.authors[0]}
+                                </h3>
 
                                 <img 
-                                src={book.volumeInfo.imageLinks.thumbnail} 
-                                alt={book.volumeInfo.title}
+                                src={book?.volumeInfo?.imageLinks?.thumbnail} 
+                                alt={book?.volumeInfo?.title}
                                 />
 
-                                <h4>{book.searchInfo.textSnippet}</h4>
-
-                                <h4>{book.volumeInfo.description}</h4>
+                                {/* <h4>{book.searchInfo.textSnippet}</h4> */}
+                                <h4>{book?.volumeInfo?.description}</h4>
+                                <br /><br />
                             </div>
                             : 
                             <p>{'its not working'}</p>
@@ -101,10 +148,9 @@ function Library(){
                 <h2>Book Shelf</h2>
             </Link>
 
-            <Link to='/desk/library'>
-                <h2>Library</h2>
+            <Link to='/desk'>
+                <h2>Desk</h2>
             </Link>
-
 
 
         </div>
