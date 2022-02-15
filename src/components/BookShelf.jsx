@@ -30,7 +30,7 @@ function BookShelf(){
 
     //Post fetch to Backend //
     const addBook = async (data) =>{
-        const URL = "http://localhost:8000/desk/"
+        const URL = "http://localhost:8000/desk"
         const options = {
             method: 'POST',
             body: JSON.stringify(data),

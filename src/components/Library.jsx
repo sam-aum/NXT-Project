@@ -51,8 +51,7 @@ function Library(){
             const parsedBooks = await addedBook.json()
             console.log(parsedBooks)
             setBooks([...books, parsedBooks])
-            navigate('/desk/bookshelf')
-            
+            navigate('/desk/bookshelf')            
   
         }catch(err){
             console.log(err)
@@ -121,11 +120,11 @@ function Library(){
                                 
                                 <h2>
                                     {index+1}. {' '}
-                                    {book?.['volumeInfo']?.title}
+                                    {book?.volumeInfo?.title}
                                 </h2>
                                 <h3>
                                     {'By: '}
-                                    {book?.volumeInfo?.authors[0]}
+                                    {book?.volumeInfo?.authors}
                                 </h3>
 
                                 <img 

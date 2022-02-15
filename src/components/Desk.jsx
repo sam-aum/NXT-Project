@@ -23,6 +23,13 @@ function Desk(){
         handleFetch()
     }, [])
 
+
+    // push to an array
+    // boolean sort filter
+    // two models
+
+
+    
     return (
         
         <div>
@@ -32,26 +39,23 @@ function Desk(){
             {books &&
                 books.map((book, index) => (
                     <div className='bookResult' key={book.id}>
-                    
-                            <div>
-                                                            
-                                <h2>
-                                    {index+1}. {' '}
-                                    {book.title} 
-                                </h2>
-                                <h3>
-                                    {'By: '}
-                                    {book.authors}
-                                </h3>
-                                <img 
-                                    src={book.imageLinks} 
-                                    alt={book.title}
-                                />
-                                <p>{book.description}</p>
 
-                            </div>
-                            
+
+                            <h2>
+                                {index+1}. {' '}
+                                {book.title} 
+                            </h2>
+                            <h3>
+                                {'By: '}
+                                {book.authors}
+                            </h3>
+                            <img 
+                                src={book.imageLinks} 
+                                alt={book.title}
+                            />
+                            <p>{book.description}</p>
                         
+
                     </div>
                 ))
             }
