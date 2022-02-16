@@ -122,7 +122,7 @@ function BookShelf(){
                             <ul className="carousel_track">
                                 <li className="carousel_slide">
                                     <img className='carousel_image'
-                                        src={book.imageLinks}
+                                        src={'https://pbs.twimg.com/media/Ex-2FxXUYAQ5jaU.jpg'}
                                         alt={book.title}
                                     />                            
                                 </li>                        
