@@ -1,4 +1,4 @@
-export default [
+const staticData = [
     {
         "id": "6202a5fb185fa65dde32ead0",
         "name": "Children of Time",
@@ -30,3 +30,5 @@ export default [
     }
    
 ]
+
+export default staticData
