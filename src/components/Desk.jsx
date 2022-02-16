@@ -1,4 +1,3 @@
-import {Link, useNavigate} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 
 function Desk(props){
@@ -27,7 +26,7 @@ function Desk(props){
             {books &&
                 books.map((book, index) => (                 
                             
-                    <div className='container' className='bookResult' key={index}>                 
+                    <div className='container bookResult' key={index}>                 
                         <div className="row myRow1">
                             <div className="col-lg-10 myCol bookInfo">
                                                                 

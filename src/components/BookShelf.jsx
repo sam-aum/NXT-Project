@@ -1,6 +1,5 @@
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {useState, useEffect} from 'react'
-import Desk from './Desk'
 
 function BookShelf(){
 
@@ -57,9 +56,10 @@ function BookShelf(){
     const addBook = async (data) =>{
         localStorage.setItem('books', JSON.stringify([data]));
         console.log(data)
+        navigate('/desk')
     }
 
-    let deskBooks = []
+    // let deskBooks = []
     // handleClick //
     const handleClick = ({title, authors, description, imageLinks, _id})=>{
         addBook({title, authors, description, imageLinks, _id})
@@ -113,7 +113,7 @@ function BookShelf(){
             {books &&
                 books.map((book, index) => (                 
                             
-                    <div className='container' className='bookResult' key={index}>                 
+                    <div className='container bookResult' key={index}>                 
                         <div className="row myRow1">
                             <div className="col-lg-10 myCol bookInfo">
                                 <button onClick={() => handleClick(book)}>

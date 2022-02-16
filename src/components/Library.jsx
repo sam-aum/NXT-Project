@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import staticData from '../data'
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 function Library(){
 
@@ -72,7 +72,7 @@ function Library(){
     // useEffect //
     useEffect(()=>{
         handleFetch(searchInput)
-    }, [])
+    }, [searchInput])
 
 
 
@@ -82,7 +82,7 @@ function Library(){
     }
 
     console.log(books)
-    
+    // 74Ie2AgU3x2SKOaZ
     return (
         
         <div>
@@ -110,7 +110,7 @@ function Library(){
             {/* Searched books display */}
             {books &&
                 books.map((book, index) => (
-                    <div className='container' className='bookResult' key={index}>   
+                    <div className='container bookResult' key={index}>   
                         <div className="row myRow1">
                             <div className="col-lg-10 myCol bookInfo">                              
                                     
