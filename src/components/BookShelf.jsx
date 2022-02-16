@@ -110,42 +110,81 @@ function BookShelf(){
                 <h1 className="header__title">Book Shelf</h1>
             </header>
 
-            {books &&
-                books.map((book, index) => (                 
-                            
-                    <div className='container bookResult' key={index}>                 
-                        <div className="row myRow1">
-                            <div className="col-lg-10 myCol bookInfo">
-                                <button onClick={() => handleClick(book)}>
-                                    Add to Desk
-                                </button>
-                                <button onClick={() => deleteHandleClick(book)}>
-                                    Remove Book
-                                </button>
-                                
-                                <h2>
-                                    {index+1}. {' '}
-                                    {book.title} 
-                                </h2>
-                                
-                                <h3>
-                                    {'By: '}
-                                    {book.authors}
-                                </h3>
 
-                                <p>{book.description}</p> 
-                            </div>    
-                            <div className="col-lg-2 myCol bookShelfImage">      
-                                <img 
-                                    src={book.imageLinks} 
-                                    alt={book.title}
-                                />
-                            </div>   
-                                           
-                        </div>                           
+            
+            <div className='carousel'>
+                <button className='carousel_button carousel_button--left'>
+                    {'<'}
+                </button>
+                <div className="carousel_track-container">
+                    {books &&
+                        books.map((book, index) => ( 
+                            <ul className="carousel_track">
+                                <li className="carousel_slide">
+                                    <img className='carousel_image'
+                                        src={book.imageLinks}
+                                        alt={book.title}
+                                    />                            
+                                </li>                        
+                                                 
+                            </ul>  
+                        ))
+                    } 
+                </div>
+                <button className='carousel_button carousel_button--right'>
+                    {'>'}
+                </button>
+
+                <div className='carousel_nav'>
+                    <button className="carousel_indicator current_slide"></button>
+                    <button className="carousel_indicator"></button>
+                    <button className="carousel_indicator"></button>
+
+                </div>
+            </div>             
+             
+            <section className='bookList'>
+            {books &&
+                books.map((book, index) => ( 
+                    <div> 
+                        
+                            
+
+                        <div className='container bookResult' key={index}>                 
+                            <div className="row myRow1">
+                                <div className="col-lg-10 myCol bookInfo">
+                                    <button onClick={() => handleClick(book)}>
+                                        Add to Desk
+                                    </button>
+                                    <button onClick={() => deleteHandleClick(book)}>
+                                        Remove Book
+                                    </button>
+                                    
+                                    <h2>
+                                        {index+1}. {' '}
+                                        {book.title} 
+                                    </h2>
+                                    
+                                    <h3>
+                                        {'By: '}
+                                        {book.authors}
+                                    </h3>
+
+                                    <p>{book.description}</p> 
+                                </div>    
+                                <div className="col-lg-2 myCol bookShelfImage">      
+                                    <img 
+                                        src={book.imageLinks} 
+                                        alt={book.title}
+                                    />
+                                </div>   
+                                            
+                            </div>                           
+                        </div>
                     </div>
                 ))
             }
+            </section>
             
 
         </div>
