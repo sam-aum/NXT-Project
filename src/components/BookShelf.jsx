@@ -73,7 +73,7 @@ function BookShelf(){
     const deleteBook = async (id) => {
         console.log("Deleting id:", id)
         const deleteId = id._id
-        const URL = `http://localhost:8000/bookshelf/${deleteId}`
+        const URL = `${process.env.REACT_APP_BACKEND_URI}/bookshelf/${deleteId}`
         console.log(URL) 
         
         try {
