@@ -32,6 +32,9 @@ function Library(){
 
                 setBooks(data.items)       
             })
+            .catch(err=>{
+                console.log(err)
+            })
     }
 
     //Post fetch to Backend //

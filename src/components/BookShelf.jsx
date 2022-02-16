@@ -10,7 +10,7 @@ function BookShelf(){
     // fetching books from backend
     const handleFetch = async () => {  
 
-        const URL = "http://localhost:8000/bookshelf"
+        const URL = `${process.env.REACT_APP_BACKEND_URI}/bookshelf`
         fetch(URL)
         .then(resp=>{
             console.log(resp)
