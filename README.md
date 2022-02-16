@@ -6,6 +6,12 @@ https://competent-noyce-3b042e.netlify.app
 
 This project is called NXT.  It keeps track of a list of things you want to do as a hobby.  These things include the next book you want to read, the next movie or show you wanna watch, the next song you want to learn or listen to, and the next game you want to play.
 
+### Getting Started
+1. Search for a book
+2. Add a book to a bookshelf
+3. Add a book to the desk
+
+
 ### Project Plan
 
 Home Page
@@ -37,6 +43,20 @@ Books
         * Needs Search page or location
 * Nav Bar
 
+### Link to the API you plan to use
+
+https://www.googleapis.com/books/v1/volumes
+
 ### Wireframes
 ![Book Wireframe](https://user-images.githubusercontent.com/95770704/154328016-ee1b1140-e565-4f7b-ad05-33c4e010feb5.png)
 
+### Technology Used
+
+* ReactJS
+* CSS
+* Heroku
+* Mongoose
+* MongoDB
+* Netlify
+* Flexbox
+* API
