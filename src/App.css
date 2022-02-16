@@ -58,8 +58,8 @@ h1,h2,h3,h4,h5,h6{
 }
 .header__title {
   /* header section title */
-margin-bottom: 30px;
-font-size: 40px;
+  margin-bottom: 70px;
+  font-size: 40px;
 }
 .header__form {
   /* form body */
@@ -69,12 +69,13 @@ font-size: 40px;
   min-width: 50vw;
   height: 60px;
   display:flex;
+  
 }
 .header__form{
   /* form body */
   outline: 0;
   border: 0;
-}
+  }
 .form__input-text {
   /* form text */
   flex: 1;
