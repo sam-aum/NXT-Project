@@ -1,5 +1,6 @@
 import {Link, useNavigate} from 'react-router-dom'
 import {useState, useEffect} from 'react'
+import Desk from './Desk'
 
 function BookShelf(){
 
@@ -28,34 +29,45 @@ function BookShelf(){
     }, [])
 
 
-    //Post fetch to Backend //
-    const addBook = async (data) =>{
-        const URL = "http://localhost:8000/desk"
-        const options = {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        try {
-            console.log('data inside addBook', data)
-            const addedBook = await fetch(URL,options)
-            // console.log(addedBook)
-            const parsedBooks = await addedBook.json()
-            console.log(parsedBooks)
-            setBooks([...books, parsedBooks])
-            navigate('/desk')
+
+    // //Post fetch to Backend //
+    // const addBook = async (data) =>{
+    //     const URL = "http://localhost:8000/desk"
+    //     const options = {
+    //         method: 'POST',
+    //         body: JSON.stringify(data),
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         }
+    //     }
+    //     try {
+    //         console.log('data inside addBook', data)
+    //         const addedBook = await fetch(URL,options)
+    //         // console.log(addedBook)
+    //         const parsedBooks = await addedBook.json()
+    //         console.log(parsedBooks)
+    //         setBooks([...books, parsedBooks])
+    //         navigate('/desk')
                 
-        }catch(err){
-            console.log(err)
-        }
+    //     }catch(err){
+    //         console.log(err)
+    //     }
+    // }
+
+    const addBook = async (data) =>{
+        localStorage.setItem('books', JSON.stringify([data]));
+        console.log(data)
     }
 
+    let deskBooks = []
     // handleClick //
-    const handleClick = ({title, authors, description, imageLinks})=>{
-        addBook({title, authors: authors[0], description, imageLinks: imageLinks.thumbnail})
+    const handleClick = ({title, authors, description, imageLinks, _id})=>{
+        addBook({title, authors, description, imageLinks, _id})
+        // deskBooks.push({title, authors: authors[0], description, imageLinks: imageLinks.thumbnail})
+        // console.log(deskBooks)
     }
+
+
 
     // Delete backend //
     const deleteBook = async (id) => {
@@ -89,6 +101,8 @@ function BookShelf(){
         deleteBook(_id)
     }
 
+
+
     return (
         
         <div>
@@ -97,31 +111,38 @@ function BookShelf(){
             </header>
 
             {books &&
-                books.map((book, index) => (
-                    <div className='bookResult' key={book.id}>                 
-                           
-                        <button onClick={() => handleClick(book)}>
-                            Add to Desk
-                        </button>
-                        <button onClick={() => deleteHandleClick(book)}>
-                            Remove Book
-                        </button>
-                        
-                        <h2>
-                            {index+1}. {' '}
-                            {book.title} 
-                        </h2>
-                        
-                        <h3>
-                            {'By: '}
-                            {book.authors}
-                        </h3>
-                        <img 
-                            src={book.imageLinks} 
-                            alt={book.title}
-                        />
-                        <p>{book.description}</p>                      
-                                                   
+                books.map((book, index) => (                 
+                            
+                    <div className='container' className='bookResult' key={index}>                 
+                        <div className="row myRow1">
+                            <div className="col-lg-10 myCol bookInfo">
+                                <button onClick={() => handleClick(book)}>
+                                    Add to Desk
+                                </button>
+                                <button onClick={() => deleteHandleClick(book)}>
+                                    Remove Book
+                                </button>
+                                
+                                <h2>
+                                    {index+1}. {' '}
+                                    {book.title} 
+                                </h2>
+                                
+                                <h3>
+                                    {'By: '}
+                                    {book.authors}
+                                </h3>
+
+                                <p>{book.description}</p> 
+                            </div>    
+                            <div className="col-lg-2 myCol bookShelfImage">      
+                                <img 
+                                    src={book.imageLinks} 
+                                    alt={book.title}
+                                />
+                            </div>   
+                                           
+                        </div>                           
                     </div>
                 ))
             }

@@ -1,28 +1,16 @@
 import {Link, useNavigate} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 
-function Desk(){
+function Desk(props){
     const [books, setBooks] = useState([])
 
-    const handleFetch = async () => {  
-
-        const URL = "http://localhost:8000/desk"
-        fetch(URL)
-        .then(resp=>{
-            console.log(resp)
-            return resp.json()
-        })
-        .then(data=>{
-            console.log(data)
-            setBooks(data)            
-        })
-    
-    }
-
     useEffect(()=>{
-        handleFetch()
+       
+        const books = localStorage.getItem('books');
+        const book = JSON.parse(books)
+        console.log(book)
+        setBooks(book)
     }, [])
-
 
     // push to an array
     // boolean sort filter
@@ -37,25 +25,32 @@ function Desk(){
                 <h1 className="header__title">Desk</h1>
             </header>
             {books &&
-                books.map((book, index) => (
-                    <div className='bookResult' key={book.id}>
+                books.map((book, index) => (                 
+                            
+                    <div className='container' className='bookResult' key={index}>                 
+                        <div className="row myRow1">
+                            <div className="col-lg-10 myCol bookInfo">
+                                                                
+                                <h2>
+                                    {index+1}. {' '}
+                                    {book.title} 
+                                </h2>
+                                
+                                <h3>
+                                    {'By: '}
+                                    {book.authors}
+                                </h3>
 
-
-                            <h2>
-                                {index+1}. {' '}
-                                {book.title} 
-                            </h2>
-                            <h3>
-                                {'By: '}
-                                {book.authors}
-                            </h3>
-                            <img 
-                                src={book.imageLinks} 
-                                alt={book.title}
-                            />
-                            <p>{book.description}</p>
-                        
-
+                                <p>{book.description}</p> 
+                            </div>    
+                            <div className="col-lg-2 myCol bookImage">      
+                                <img 
+                                    src={book.imageLinks} 
+                                    alt={book.title}
+                                />
+                            </div>   
+                                           
+                        </div>                           
                     </div>
                 ))
             }
@@ -67,6 +62,7 @@ function Desk(){
                 <Link to='/desk/library'>
                     <h2>Library</h2>
                 </Link>
+                
         </div>
 
     )
