@@ -55,13 +55,7 @@ function Desk(props){
                 ))
             }
 
-                <Link to='/desk/bookshelf'>
-                    <h2>Book Shelf</h2>
-                </Link>
-
-                <Link to='/desk/library'>
-                    <h2>Library</h2>
-                </Link>
+       
                 
         </div>
 

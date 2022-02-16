@@ -103,53 +103,50 @@ function Library(){
                     onChange={handleChange}
                     value={searchInput}
                     />                    
-                    <button type='submit'>Search</button>
+                    <button className='search' type='submit'>Search</button>
                 </form>
             </header>
 
             {/* Searched books display */}
             {books &&
                 books.map((book, index) => (
-                    <div className='bookResult' key={book.id}>
-                        {book.volumeInfo ? 
-                            <div>
-                                <button onClick={() => handleClick(book.volumeInfo)}>
-                                    Add to Book Shelf
-                                </button>
-
+                    <div className='container' className='bookResult' key={index}>   
+                        <div className="row myRow1">
+                            <div className="col-lg-10 myCol bookInfo">                              
+                                    
+                                    <button onClick={() => handleClick(book.volumeInfo)}>
+                                        Add to Book Shelf
+                                    </button>
+                                    
+                                    <h2>
+                                        {index+1}. {' '}
+                                        {book?.volumeInfo?.title}
+                                    </h2>
+                                    
+                                    <h3>
+                                        {'By: '}
+                                        {book?.volumeInfo?.authors}
+                                    </h3>
                                 
-                                <h2>
-                                    {index+1}. {' '}
-                                    {book?.volumeInfo?.title}
-                                </h2>
-                                <h3>
-                                    {'By: '}
-                                    {book?.volumeInfo?.authors}
-                                </h3>
-
-                                <img 
-                                src={book?.volumeInfo?.imageLinks?.thumbnail} 
-                                alt={book?.volumeInfo?.title}
-                                />
-
-                                {/* <h4>{book.searchInfo.textSnippet}</h4> */}
-                                <h4>{book?.volumeInfo?.description}</h4>
-                                <br /><br />
+                                    {/* <h4>{book.searchInfo.textSnippet}</h4> */}
+                                    <p>{book?.volumeInfo?.description}</p>
                             </div>
-                            : 
-                            <p>{'its not working'}</p>
-                        }
+                            <div className="col-lg-2 myCol bookShelfImage">   
+                                    <img 
+                                    src={book?.volumeInfo?.imageLinks?.thumbnail} 
+                                    alt={book?.volumeInfo?.title}
+                                    />
+                                    <br /><br />
+                                    
+                                    
+                            
+                            </div>
+                        </div>
                     </div>
                 ))
             }
 
-            <Link to='/desk/bookshelf'>
-                <h2>Book Shelf</h2>
-            </Link>
-
-            <Link to='/desk'>
-                <h2>Desk</h2>
-            </Link>
+     
 
 
         </div>

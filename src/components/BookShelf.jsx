@@ -148,12 +148,6 @@ function BookShelf(){
             }
             
 
-                <Link to='/desk/library'>
-                    <h2>Library</h2>
-                </Link>
-                <Link to='/desk'>
-                    <h2>Desk</h2>
-                </Link>
         </div>
 
     )
