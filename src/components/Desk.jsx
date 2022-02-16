@@ -23,6 +23,37 @@ function Desk(props){
             <header className='header'>
                 <h1 className="header__title">Desk</h1>
             </header>
+
+            <div className='carousel'>
+                <button className='carousel_button carousel_button--left'>
+                    {'<'}
+                </button>
+                <div className="carousel_track-container">
+                    {books &&
+                        books.map((book, index) => ( 
+                            <ul className="carousel_track">
+                                <li className="carousel_slide">
+                                    <img className='carousel_image'
+                                        src={book.imageLinks}
+                                        alt={book.title}
+                                    />                            
+                                </li>                        
+                                                 
+                            </ul>  
+                        ))
+                    } 
+                </div>
+                <button className='carousel_button carousel_button--right'>
+                    {'>'}
+                </button>
+
+                <div className='carousel_nav'>
+                    <button className="carousel_indicator current_slide"></button>
+                    <button className="carousel_indicator"></button>
+                    <button className="carousel_indicator"></button>
+
+                </div>
+            </div>   
             {books &&
                 books.map((book, index) => (                 
                             
